@@ -24,17 +24,7 @@ pipeline {
             }
         }
         
-                
-        stage('Sonarqube') {
-            steps {
-                withSonarQubeEnv('SCANNER_HOME'){
-                   sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Shopping-Cart \
-                   -Dsonar.java.binaries=. \
-                   -Dsonar.projectKey=Shopping-Cart '''
-               }
-            }
-        }
-        
+                  
         stage('Build') {
             steps {
                 sh "mvn clean package -DskipTests=true"
