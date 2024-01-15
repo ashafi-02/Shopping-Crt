@@ -4,10 +4,11 @@ pipeline {
         jdk  'JAVA_HOME'
         maven  'MAVEN_HOME'
         git     'git'
+        
     }
     
     environment{
-        SCANNER_HOME= tool 'sonar'
+        SCANNER_HOME= tool 'SCANNER_HOME'
     }
     
     stages {
@@ -26,7 +27,7 @@ pipeline {
                 
         stage('Sonarqube') {
             steps {
-                withSonarQubeEnv('sonar'){
+                withSonarQubeEnv('SCANNER_HOME'){
                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Shopping-Cart \
                    -Dsonar.java.binaries=. \
                    -Dsonar.projectKey=Shopping-Cart '''
